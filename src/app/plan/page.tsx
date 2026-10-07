@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { PlanView } from "./PlanView";
 
-export const metadata: Metadata = { title: "資產配置" };
+export const metadata: Metadata = { title: "我的計畫" };
 
 export default function PlanPage() {
   return (
     <>
-      <h1>決定你的資產配置</h1>
+      <h1>我的投資政策書</h1>
       <p className="lede">
-        先用五題問卷找出風險屬性，再調整股票、債券、現金的比例，看看長期試算和下跌時的可能情況。設定會存在這台裝置的瀏覽器裡，持股頁的再平衡也會用這個目標比例。
+        先把財務現況、目標和紀律寫下來。總覽和持股頁會依照這裡的規則檢查你的狀態，定期檢視時也是回來對照這一頁。所有資料只存在這台裝置的瀏覽器。
       </p>
       <PlanView />
     </>

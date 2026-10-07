@@ -4,8 +4,8 @@ import { Nav } from "@/components/Nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "新手投資工作台", template: "%s · 新手投資工作台" },
-  description: "投資觀念學習、真實行情趨勢分析、資產配置試算與持股再平衡。",
+  title: { default: "投資工作台", template: "%s · 投資工作台" },
+  description: "個人投資政策書、持股穿透分析、季度檢視與投資課程。",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -24,8 +24,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <header className="site">
           <div className="head-in">
             <Link className="brand" href="/">
-              <b>新手投資工作台</b>
-              <small>先懂觀念，再看數據，最後算配置</small>
+              <b>投資工作台</b>
+              <small>少做決定，但每個決定都想清楚</small>
             </Link>
             <Nav />
           </div>
