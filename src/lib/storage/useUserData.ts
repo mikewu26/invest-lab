@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useSyncExternalStore } from "react";
 import { localStore } from "./local";
+import { migrate } from "./migrate";
 import { DEFAULT_DATA, type UserData } from "./types";
 
 const store = localStore;
@@ -21,9 +22,13 @@ export function exportJson(data: UserData) {
 }
 
 export function importJson(text: string): UserData {
-  const parsed = JSON.parse(text) as UserData;
-  if (parsed?.version !== 1 || !Array.isArray(parsed.holdings) || !parsed.plan) {
-    throw new Error("檔案格式不符，請選擇從本工具匯出的 JSON 檔");
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    throw new Error("檔案不是有效的 JSON");
   }
-  return parsed;
+  const v = (parsed as { version?: number })?.version;
+  if (v !== 1 && v !== 2) throw new Error("檔案格式不符，請選擇從本工具匯出的 JSON 檔");
+  return migrate(parsed);
 }

@@ -1,4 +1,5 @@
 "use client";
+import { migrate } from "./migrate";
 import { DEFAULT_DATA, type Store, type UserData } from "./types";
 
 const KEY = "invest-lab:v1";
@@ -10,12 +11,7 @@ function read(): UserData {
   try {
     const raw = typeof window !== "undefined" ? window.localStorage.getItem(KEY) : null;
     if (raw) {
-      const parsed = JSON.parse(raw) as Partial<UserData>;
-      cache = {
-        ...DEFAULT_DATA,
-        ...parsed,
-        plan: { ...DEFAULT_DATA.plan, ...parsed.plan },
-      } as UserData;
+      cache = migrate(JSON.parse(raw));
       return cache;
     }
   } catch {
